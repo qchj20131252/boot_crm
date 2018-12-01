@@ -1,8 +1,50 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
-       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:mvc="http://www.springframework.org/schema/mvc"
+       xmlns:context="http://www.springframework.org/schema/context"
        xsi:schemaLocation="http://www.springframework.org/schema/beans
-        http://www.springframework.org/schema/beans/spring-beans.xsd">
+        http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
+    <!--配置SpringMVC-->
+    <!--
+        1.开启SpringMVC注解模式
+        简化配置：
+        （1）自动注册DefaultAnnotationHandlerMapping,AnnotationMethodHandlerAdaptor
+        （2）提供一些列：数据绑定，数字和日期的format @NumberFormat，@DateTimeFormat，xml，json默认读写支持
+    -->
+    <mvc:annotation-driven />
 
+    <!--
+        2.静态资源默认servlet配置
+        （1）加入对静态资源的处理：js，css，image
+        （2）允许使用"/"做整体映射
+    -->
+    <mvc:default-servlet-handler />
 
+    <!--
+        3.配置单视图解析器(二选一)
+        (1) html视图解析器
+        设置freeMarker的配置文件路径 -->
+    <!-- 设置freeMarker的配置文件路径 -->
+    <bean id="freemarkerConfiguration" class="org.springframework.beans.factory.config.PropertiesFactoryBean">
+        <property name="location" value="classpath:freemarker.properties" />
+    </bean>
+    <bean id="viewResolver" class="org.springframework.web.servlet.view.freemarker.FreeMarkerViewResolver">
+        <property name="exposeRequestAttributes" value="true" />
+        <property name="exposeSessionAttributes" value="true" />
+        <property name="viewClass" value="org.springframework.web.servlet.view.freemarker.FreeMarkerView" />
+        <property name="cache"><value>true</value></property>
+        <property name="prefix"><value>/WEB-INF/views/</value></property>
+        <property name="suffix"><value>.html</value></property>
+        <property name="contentType" value="text/html; charset=UTF-8" />
+    </bean>
+
+    <!--4.扫描web相关的bean:controller-->
+    <context:component-scan base-package="com.kelab.controller" />
+
+    <!--5.拦截器配置-->
+    <!--<mvc:interceptors>-->
+        <!---->
+    <!--</mvc:interceptors>-->
+    
+    
 </beans>
