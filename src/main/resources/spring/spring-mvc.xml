@@ -4,6 +4,7 @@
        xmlns:context="http://www.springframework.org/schema/context"
        xsi:schemaLocation="http://www.springframework.org/schema/beans
         http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
+
     <!--配置SpringMVC-->
     <!--
         1.开启SpringMVC注解模式
@@ -35,7 +36,7 @@
         <property name="cache"><value>true</value></property>
         <property name="prefix"><value>/WEB-INF/views/</value></property>
         <property name="suffix"><value>.html</value></property>
-        <property name="contentType" value="text/html; charset=UTF-8" />
+        <property name="contentType" value="text/html;charset=UTF-8" />
     </bean>
 
     <!--4.扫描web相关的bean:controller-->
@@ -45,6 +46,6 @@
     <!--<mvc:interceptors>-->
         <!---->
     <!--</mvc:interceptors>-->
-    
-    
+
+
 </beans>

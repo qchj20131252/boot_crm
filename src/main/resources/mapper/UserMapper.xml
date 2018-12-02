@@ -6,4 +6,10 @@
     <select id="findUserById" parameterType="Integer" resultType="user">
         select * from user where id=#{id}
     </select>
+    <select id="findAllUser" resultType="user">
+        select * from user
+    </select>
+    <insert id="addUser" parameterType="user">
+        insert into user(name,jobs,phone) values (#{name},#{jobs},#{phone})
+    </insert>
 </mapper>

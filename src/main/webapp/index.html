@@ -1,13 +1,66 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh-CN">
 <head>
-    <meta charset="UTF-8">
+    <meta http-equiv="Content-Type" content="text/html" charset="UTF-8">
     <title>首页</title>
+    <link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
+    <script type="text/javascript" src="/static/js/jquery-3.3.1.min.js"></script>
+    <script src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="/static/js/user.js"></script>
 </head>
 <body>
-    <form method="get" action="/findUserById">
-        <input type="text" name="id" id="id" />
-        <input type="submit" value="查询" />
-    </form>
+    <div>
+        <form role="form">
+            <input type="text" class="form-control" placeholder="请输入需要查询的用户id" id="id" />
+            <input type="button" value="查询用户" class="btn" onclick="findUserById()" />
+        </form>
+    </div>
+    <button class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">新增用户</button>
+    <!-- 模态框（Modal） -->
+    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h4 class="modal-title" id="myModalLabel">新增用户</h4>
+                </div>
+                <div class="modal-body">
+                    <form class="form-inline" role="form">
+                        <div class="form-group">
+                            姓名：<input type="text" class="form-control" id="name" placeholder="请输入姓名">
+                        </div>
+                        <br />
+                        <div class="form-group">
+                            职业：<input type="text" class="form-control" id="jobs" placeholder="请输入职业">
+                        </div>
+                        <br />
+                        <div class="form-group">
+                            电话：<input type="text" class="form-control" id="phone" placeholder="请输入电话">
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                    <button type="button" class="btn btn-primary" data-dismiss="modal" onclick="addUser()" >提交更改</button>
+                </div>
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal -->
+    </div>
+
+    <table class="table table-bordered table-striped">
+        <thead>
+            <tr>
+                <td>序号</td>
+                <td>姓名</td>
+                <td>职业</td>
+                <td>电话</td>
+                <td>操作</td>
+            </tr>
+        </thead>
+        <tbody id="user_info"></tbody>
+
+    </table>
+
 </body>
+
 </html>
