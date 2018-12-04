@@ -12,4 +12,22 @@
     <insert id="addUser" parameterType="user">
         insert into user(name,jobs,phone) values (#{name},#{jobs},#{phone})
     </insert>
+    <update id="updateUser" parameterType="user">
+        update user
+        <set>
+            <if test="name != null">
+                name=#{name},
+            </if>
+            <if test="jobs != null">
+                jobs=#{jobs},
+            </if>
+            <if test="phone != null">
+                phone=#{phone},
+            </if>
+        </set>
+        where id=#{id}
+    </update>
+    <delete id="deleteUser" parameterType="Integer">
+        delete from user where id=#{id}
+    </delete>
 </mapper>

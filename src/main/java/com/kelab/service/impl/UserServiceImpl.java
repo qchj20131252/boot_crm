@@ -31,4 +31,14 @@ public class UserServiceImpl implements UserService {
     public int addUser(User user) {
         return this.userDao.addUser(user);
     }
+
+    @Override
+    public int updateUser(User user) {
+        return this.userDao.updateUser(user);
+    }
+
+    @Override
+    public int deleteUser(Integer id) {
+        return this.userDao.deleteUser(id);
+    }
 }
